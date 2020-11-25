@@ -1,11 +1,12 @@
 class User < ApplicationRecord
-    has_many :registrations
-        primary_key: :name
-        foreign_key: :student_id
-        class_name: :enrollment
+    has_many :registrations,
+        primary_key: :id,
+        foreign_key: :student_id,
+        class_name: :Enrollment
     
-    has_many :course
-
+    has_many :classes, 
+        through: :registrations,
+        source: :Course
     # house.rb -> id
     # has_many( :residents, {
     #     primary_key: :id,   # The primary key for House
